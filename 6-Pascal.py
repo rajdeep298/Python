@@ -11,9 +11,9 @@ def factorial(n):
 def pascal(n):
     for i in range(n):
         for j in range(n-i):
-            print(" ",end=" ")
+            print(" ",end="")
         for j in range(i+1):
-            print(int(factorial(i)/(factorial(j) *factorial(i-j))),end=" ")
+            print(int(factorial(i)/(factorial(j) *factorial(i-j))),end="")
         print()
 
 if __name__=='__main__':
