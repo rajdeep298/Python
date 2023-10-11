@@ -15,10 +15,10 @@ if any(fruit=='mango' for fruit in lst):
 else:
     print("Mango is not present in the lst")
 
-# if list.count('mango') > 0:
-#     print("Mango is present in the lst")
-# else:
-#     print("Mango is not present in the lst")
+if list.count('mango') > 0:
+    print("Mango is present in the lst")
+else:
+    print("Mango is not present in the lst")
 
 # x = lst.find('mango')
 # print(x)
