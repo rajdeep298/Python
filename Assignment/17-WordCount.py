@@ -7,8 +7,7 @@ lines = fp.readlines()
 txt = []
 
 for i in lines:
-    i = i.strip().lower().replace(',', '').replace('.', '').replace('?', '').replace('!', '').replace(':', '').replace(
-        ';', '')
+    i = i.strip().lower().replace(',', '').replace('.', '').replace('?', '').replace('!', '').replace(':', '').replace(';', '')
     txt.append(i.split(' '))
 
 word_count = 0
