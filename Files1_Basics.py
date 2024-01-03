@@ -34,7 +34,6 @@ fp.close()
 
 # open the file in rb mode
 fp = open("Input.txt", "rb")
-fp.write("Hello World")
 print(fp.read())
 fp.close()
 
