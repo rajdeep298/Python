@@ -4,13 +4,22 @@ class Graph:
     status = []
     front = rear = -1
     queue = []
-    n=0
+    n = 0
     graph = []
+    el0 = []
+    el1 = []
 
-    def graphFromEdgeList(self, el):
-        self.graph = []
-        for i in range(len(el)):
-            self.graph[el[0][i]][el[1][i]] = 1
+    def __init__(self, edge_list):
+        print("Enter the number of edges:")
+        for i in range(len(edge_list)):
+            print("Enter the source vertex:")
+            self.el0.append(int(input()))
+            print("Enter the destination vertex:")
+            self.el1.append(int(input()))
+
+    def graphFromEdgeList(self):
+        for i in range(len(self.el)):
+            self.graph[self.el[0][i]][self.el[1][i]] = 1
 
     def nodeRemove(self, node):
         for i in range(len(self.graph)):
@@ -119,8 +128,8 @@ class Graph:
             self.src.append('?')
             self.dest.append('?')
         self.queue.append('0')
-        self.status[0]='!'
-        self.src[0]='*'
+        self.status[0] = '!'
+        self.src[0] = '*'
 
         while self.front != self.rear:
             node = self.dequeue()
@@ -132,42 +141,41 @@ class Graph:
 
         print("BFS->", self.queue)
 
-graph=Graph()
-edge_list = [[0, 0, 1, 2, 3, 3, 4, 4, 4, 5, 5],[1, 2, 2, 3, 4, 5, 5, 6, 7, 6, 7]]
 
-#Graph from edge list
-graph.graphFromEdgeList(edge_list)
-print("Graph->",graph.graph)
+graph = Graph()
+# Graph from edge list
+graph.graphFromEdgeList()
+print("Graph->", graph.graph)
 
-#Add node
+# Add node
 graph.nodeAdd(8)
-print("Graph->",graph.graph)
+print("Graph->", graph.graph)
 
-#Add edge
-graph.edgeAdd(8,9)
-print("Graph->",graph.graph)
+# Add edge
+graph.edgeAdd(8, 9)
+print("Graph->", graph.graph)
 
-#Remove node
+# Remove node
 graph.nodeRemove(8)
-print("Graph->",graph.graph)
+print("Graph->", graph.graph)
 
-#Remove edge
-graph.edgeRemove(8,9)
+# Remove edge
+graph.edgeRemove(8, 9)
 
-#Print node edges
+# Print node edges
 graph.printNodeEdges()
 
-#Degree Distribution
-print("Degree Distribution->",graph.degree_distribution())
+# Degree Distribution
+print("Degree Distribution->", graph.degree_distribution())
 
-#Clustering Coefficient
-print("Clustering Coefficient->",graph.clustering_coefficient())
+# Clustering Coefficient
+print("Clustering Coefficient->", graph.clustering_coefficient())
 
-#Connected Components
-print("Connected Components->",graph.connected_components())
+# Connected Components
+print("Connected Components->", graph.connected_components())
 
-#Connected Components as Graphs
-print("Connected Components as Graphs->",graph.connected_components_as_graphs())
+# Connected Components as Graphs
+print("Connected Components as Graphs->", graph.connected_components_as_graphs())
 
-#BFS
+# BFS
 graph.BFS(0)
