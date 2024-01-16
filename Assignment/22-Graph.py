@@ -17,6 +17,15 @@ class Graph:
             self.graph[i][node] = 0
             self.graph[node][i] = 0
 
+    def edgeAdd(self, sv, ev):
+        self.graph[sv][ev] = 1
+        self.graph[ev][sv] = 1
+
+    def nodeAdd(self, node):
+        for i in range(len(self.graph)):
+            self.graph[i][node] = 0
+            self.graph[node][i] = 0
+
     def edgeRemove(self, sv, ev):
         self.graph[sv][ev] = 0
         self.graph[ev][sv] = 0
