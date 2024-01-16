@@ -19,8 +19,8 @@ class Graph:
             self.el1.append(int(input()))
 
     def graphFromEdgeList(self):
-        for i in range(len(self.el)):
-            self.graph[self.el[0][i]][self.el[1][i]] = 1
+        for i in range(len(self.el0)):
+            self.graph[self.el0[i]][self.el1[i]] = 1
 
     def nodeRemove(self, node):
         for i in range(len(self.graph)):
