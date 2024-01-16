@@ -1,17 +1,18 @@
 class Graph:
-    src = []
-    dest = []
-    status = []
-    front = rear = -1
-    queue = []
-    n = 0
-    graph = []
-    el0 = []
-    el1 = []
+    def __init__(self):
+        self.src = []
+        self.dest = []
+        self.status = []
+        self.front = self.rear = -1
+        self.queue = []
+        self.n = 0
+        self.graph = []
+        self.el0 = []
+        self.el1 = []
 
-    def __init__(self, edge_list):
-        print("Enter the number of edges:")
-        for i in range(len(edge_list)):
+    def edgelistInitialize(self):
+        n=int(input("Enter the number of edges in edgelist:"))
+        for i in range(n):
             print("Enter the source vertex:")
             self.el0.append(int(input()))
             print("Enter the destination vertex:")
@@ -143,6 +144,11 @@ class Graph:
 
 
 graph = Graph()
+
+# Edge list
+graph.edgelistInitialize()
+print("Edge List->", graph.el0, graph.el1)
+
 # Graph from edge list
 graph.graphFromEdgeList()
 print("Graph->", graph.graph)
