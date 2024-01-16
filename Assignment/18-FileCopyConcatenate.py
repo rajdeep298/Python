@@ -32,4 +32,3 @@ while ch == 'y':
 
 fp1.close()
 fp2.close()
-fp3.close()
