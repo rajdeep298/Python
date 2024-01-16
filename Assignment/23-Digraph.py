@@ -147,31 +147,6 @@ class DiGraph(Graph):
         def __init__(self):
             super().__init__()
 
-        def predecessors(self, node):
-            return [i for i in range(len(self.graph)) if self.graph[i][node] == 1]
-
-        def successors(self, node):
-            return [i for i in range(len(self.graph)) if self.graph[node][i] == 1]
-
-        def reverse_edges(self):
-            reversed_graph = [[0 for _ in range(self.n)] for _ in range(self.n)]
-            for i in range(self.n):
-                for j in range(self.n):
-                    reversed_graph[i][j] = self.graph[j][i]
-            return reversed_graph
-
-        def strongly_connected_components(self):
-            reversed_graph = self.reverse_edges()
-            reversed_components = self.connected_components_as_graphs(reversed_graph)
-            strongly_connected_components = []
-
-            for component in reversed_components:
-                component_nodes = set(node for node in component.graph if component.graph[node])
-                original_component = self._dfs_strongly_connected(component_nodes)
-                strongly_connected_components.append(original_component)
-
-            return strongly_connected_components
-
         def _dfs_strongly_connected(self, start_nodes):
             visited = set()
             component = set()
@@ -185,6 +160,32 @@ class DiGraph(Graph):
                     stack.extend(neighbor for neighbor in self.graph[current_node] if neighbor not in visited)
 
             return component
+
+    def predecessors(self, node_to_check):
+        return [i for i in range(len(self.graph)) if self.graph[i][node_to_check] == 1]
+
+    def successors(self, node_to_check):
+        return [i for i in range(len(self.graph)) if self.graph[node_to_check][i] == 1]
+
+    def reverse_edges(self):
+        reversed_graph = [[0 for _ in range(self.n)] for _ in range(self.n)]
+        for i in range(self.n):
+            for j in range(self.n):
+                reversed_graph[i][j] = self.graph[j][i]
+        return reversed_graph
+
+    def strongly_connected_components(self):
+        reversed_graph = self.reverse_edges()
+        reversed_components = self.connected_components_as_graphs(reversed_graph)
+        strongly_connected_components = []
+
+        for component in reversed_components:
+            component_nodes = set(node for node in component.graph if component.graph[node])
+            original_component = self._dfs_strongly_connected(component_nodes)
+            strongly_connected_components.append(original_component)
+
+        return strongly_connected_components
+
 
 di_graph = DiGraph()
 
