@@ -1,11 +1,10 @@
 # copying content of one file to another file
 import sys
 
-n = int(input("Enter 1 for write and 2 for append: "))
-
 ch = 'y'
 
 while ch == 'y':
+    n = int(input("Enter 1 for write and 2 for append: "))
     if n == 1:
         fp1 = open(sys.argv[1], 'r')
         fp2 = open(sys.argv[2], 'w')
@@ -29,7 +28,8 @@ while ch == 'y':
 
     ch = input("Do you want to continue? y/n: ")
     ch = ch.lower()
-    fp3.close()
+
 
 fp1.close()
 fp2.close()
+fp3.close()
