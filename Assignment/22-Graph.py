@@ -200,38 +200,48 @@
 # graph.BFS(0)
 
 from collections import deque
+
+
 class Graph:
     def __init__(self):
         self.nodes = set()
         self.edges = {}
+
     def read_edge_list(self, filename):
         with open(filename, "r") as file:
             for line in file:
                 u, v = map(int, line.strip().split())
                 self.add_edge(u, v)
+
     def add_node(self, node):
         self.nodes.add(node)
+
     def remove_node(self, node):
         if node in self.nodes:
             self.nodes.remove(node)
             for neighbor in self.edges.pop(node, []):
                 self.remove_edge(neighbor, node)
+
     def add_edge(self, u, v):
         self.nodes.add(u)
         self.nodes.add(v)
         self.edges.setdefault(u, []).append(v)
         self.edges.setdefault(v, []).append(u)
+
     def remove_edge(self, u, v):
         self.edges[u].remove(v)
         self.edges[v].remove(u)
+
     def print_graph(self):
         print("Nodes:", self.nodes)
         print("Edges:")
         for node, neighbors in self.edges.items():
             print(f"{node} -> {neighbors}")
+
     def degree_distribution(self):
         degrees = [len(self.edges[node]) for node in self.nodes]
         return degrees
+
     def clustering_coefficient(self):
         clustering_coefficients = {}
         for node in self.nodes:
@@ -247,6 +257,7 @@ class Graph:
             else:
                 clustering_coefficients[node] = 0.0
         return clustering_coefficients
+
     def connected_components(self):
         components = []
         visited = set()
@@ -256,6 +267,7 @@ class Graph:
                 self._dfs_connected_component(node, component, visited)
                 components.append(component)
         return components
+
     def _dfs_connected_component(self, node, component, visited):
         visited.add(node)
         component.add_node(node)
@@ -263,8 +275,10 @@ class Graph:
             if neighbor not in visited:
                 component.add_edge(node, neighbor)
                 self._dfs_connected_component(neighbor, component, visited)
+
     def neighbors(self, node):
         return self.edges[node]
+
     def shortest_paths(self, source):
         distances = {node: float("inf") for node in self.nodes}
         distances[source] = 0
@@ -277,12 +291,14 @@ class Graph:
                     distances[neighbor] = distances[current] + 1
                     queue.append(neighbor)
         return distances
+
+
 graph = Graph()
 graph.read_edge_list("edges.txt")
 graph.print_graph()
 components = graph.connected_components()
-print("Distribution: ",graph.degree_distribution())
-print("Clustering coefficient: ",graph.clustering_coefficient())
+print("Distribution: ", graph.degree_distribution())
+print("Clustering coefficient: ", graph.clustering_coefficient())
 print("Neighbour of node 3")
 neighbors_of_node_3 = graph.neighbors(3)
 print(neighbors_of_node_3)
